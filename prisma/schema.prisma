@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model contacts {
+  id         Int      @id @default(autoincrement())
+  name       String?  @db.VarChar(255)
+  email      String?  @db.VarChar(255)
+  phone      String?  @db.VarChar(255)
+  photograph String?  @db.VarChar(255)
+  favourite  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model users {
+  id            Int      @id @default(autoincrement())
+  name          String?  @db.VarChar(255)
+  email         String?  @db.VarChar(255)
+  password      String?  @db.VarChar(255)
+  refresh_token String?  @db.Text
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
